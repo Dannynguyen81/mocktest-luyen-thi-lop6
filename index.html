@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hệ thống Khảo sát Năng lực vào Lớp 6 — Trường Nguyễn An Ninh</title>
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Sticky Top Header -->
+  <header class="top">
+    <div class="bar">
+      <div class="logo-text">
+        <div class="logo-circle"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div class="slogan">LUYỆN THI VÀO LỚP 6<br>TRƯỜNG NGUYỄN AN NINH</div>
+      </div>
+      <div class="lvl">HỆ THỐNG THI THỬ MÔ PHỎNG<br>Mã đề khảo sát: NAN-CLC-ENG</div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    
+    <!-- Lobby Screen -->
+    <div id="lobby-screen">
+      <h1 class="page">Hệ thống khảo sát năng lực vào lớp 6 CLC</h1>
+      <div class="muted">
+        Hệ thống đề thi thử phân hóa cao mô phỏng cấu trúc kỳ thi chính thức. Mỗi đề thi có đồng hồ bấm giờ riêng (30 phút). Hãy hoàn thành đầy đủ thông tin cá nhân bên dưới trước khi bắt đầu.
+      </div>
+      
+      <!-- Student Information Card -->
+      <div class="card" id="info-card">
+        <div class="muted" style="margin-bottom:12px; font-weight: 600; color: var(--primary-color);">
+          <i class="fa-solid fa-user-pen"></i> Vui lòng điền thông tin học sinh
+        </div>
+        <div class="grid2">
+          <div>
+            <label class="fl">Họ và tên học sinh <span class="req">*</span></label>
+            <input class="f" id="hoTen" placeholder="VD: Nguyễn Văn An">
+          </div>
+          <div>
+            <label class="fl">Năm sinh <span class="req">*</span></label>
+            <input class="f" id="namSinh" inputmode="numeric" placeholder="VD: 2015">
+          </div>
+        </div>
+        <div>
+          <label class="fl">Trường tiểu học hiện tại <span class="req">*</span></label>
+          <input class="f" id="truongMM" placeholder="VD: Tiểu học Nguyễn Bỉnh Khiêm">
+        </div>
+      </div>
+      
+      <!-- Tabs Switcher -->
+      <div class="tabs-container">
+        <button class="tab-btn active" data-tab="english">
+          <i class="fa-solid fa-language"></i> Đề thi tiếng Anh
+        </button>
+        <button class="tab-btn" data-tab="tracnghiem">
+          <i class="fa-solid fa-list-check"></i> Đề thi Trắc nghiệm
+        </button>
+        <button class="tab-btn" data-tab="toan">
+          <i class="fa-solid fa-calculator"></i> Đề Toán - Tư duy
+        </button>
+        <button class="tab-btn" data-tab="rank">
+          <i class="fa-solid fa-trophy"></i> Bảng xếp hạng
+        </button>
+      </div>
+      
+      <!-- Tab Content Area -->
+      <div id="tab-content">
+        <!-- English Tab content (Active by default) -->
+        <div id="tab-english">
+          <div class="lobby-header-actions">
+            <button class="random-btn" id="btnRandomExam">
+              <i class="fa-solid fa-shuffle"></i> Thi thử ngẫu nhiên (1 trong 10 đề)
+            </button>
+          </div>
+          <div class="exam-grid" id="englishExamList">
+            <!-- Exam cards will be rendered dynamically here -->
+          </div>
+        </div>
+        
+        <!-- Trắc nghiệm Tab content -->
+        <div id="tab-tracnghiem" class="hidden">
+          <div class="lobby-header-actions">
+            <button class="random-btn" id="btnRandomTracnghiem">
+              <i class="fa-solid fa-shuffle"></i> Thi thử ngẫu nhiên (1 trong 10 đề)
+            </button>
+          </div>
+          <div class="exam-grid" id="tracnghiemExamList">
+            <!-- Exam cards will be rendered dynamically here -->
+          </div>
+        </div>
+        
+        <!-- Toán - Tư duy Tab content (Placeholder) -->
+        <div id="tab-toan" class="hidden">
+          <div class="card placeholder-card">
+            <div class="placeholder-icon">
+              <i class="fa-solid fa-gears"></i>
+            </div>
+            <h3>Đề thi Toán - Tư duy logic</h3>
+            <p style="margin-top: 8px;">Nội dung đang được ban chuyên môn biên soạn và kiểm duyệt.</p>
+            <p>Vui lòng quay lại sau.</p>
+          </div>
+        </div>
+        
+        <!-- Bảng xếp hạng Tab content -->
+        <div id="tab-rank" class="hidden">
+          <div class="card">
+            <h3 style="color: var(--primary-color); margin-bottom: 12px; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+              <i class="fa-solid fa-crown" style="color: #D4AF37;"></i> Bảng xếp hạng kết quả thi thử
+            </h3>
+            <div class="muted" style="margin-bottom: 16px;">
+              Bảng xếp hạng hiển thị kết quả làm bài của các học sinh tham gia khảo sát năng lực vào lớp 6 trường Nguyễn An Ninh.
+            </div>
+            
+            <!-- Sub-tabs for Leaderboard Subjects -->
+            <div class="rank-subtabs" style="display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap;">
+              <button class="rank-subtab-btn active" data-subject="english">
+                <i class="fa-solid fa-language"></i> Tiếng Anh
+              </button>
+              <button class="rank-subtab-btn" data-subject="tracnghiem">
+                <i class="fa-solid fa-list-check"></i> Trắc nghiệm
+              </button>
+              <button class="rank-subtab-btn" data-subject="toan">
+                <i class="fa-solid fa-calculator"></i> Toán - Tư duy
+              </button>
+            </div>
+            <div style="overflow-x: auto;">
+              <table class="rank-table" style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px;">
+                <thead>
+                  <tr style="background: #f1f5f9; border-bottom: 2px solid #cbd5e1; color: var(--primary-color); font-weight: 700;">
+                    <th style="padding: 10px 6px; width: 55px; text-align: center;">Hạng</th>
+                    <th style="padding: 10px 6px; min-width: 140px;">Học sinh</th>
+                    <th style="padding: 10px 6px; min-width: 150px;">Trường tiểu học</th>
+                    <th style="padding: 10px 6px; min-width: 180px;">Đề thi</th>
+                    <th style="padding: 10px 6px; text-align: right; width: 100px;">Điểm thi</th>
+                  </tr>
+                </thead>
+                <tbody id="leaderboardBody">
+                  <!-- Dynamic rank rows -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Quiz Taking Screen (Hidden initially) -->
+    <div id="quiz-screen" class="hidden">
+      <!-- Sticky/Static Section Bar with Timer & Actions -->
+      <div class="secbar">
+        <div class="t" id="quizExamTitle">ĐỀ THI TIẾNG ANH</div>
+        <div class="timer">
+          <div class="tclock" id="quizClock">30:00</div>
+          <button class="tbtn" id="btnSubmitExam">Nộp bài</button>
+          <button class="tbtn-exit" id="btnExitExam">Thoát</button>
+        </div>
+      </div>
+      
+      <!-- Questions Container -->
+      <div class="secbody" id="quizBody">
+        <!-- Questions dynamically generated here -->
+      </div>
+    </div>
+    
+    <!-- Results & Self-Grading Screen (Hidden initially) -->
+    <div id="result-screen" class="hidden">
+      <!-- Total Score Display -->
+      <div class="card result-header-card">
+        <h2>KẾT QUẢ THI THỬ & TỰ CHẤM ĐIỂM</h2>
+        <div class="muted" style="color: #cbd5e1;" id="resultStudentInfo">Nguyễn Văn An - 2015</div>
+        
+        <div class="score-box">
+          <div class="score-val" id="resultTotalScore">0.0</div>
+          <div class="score-lbl">Tổng điểm tự chấm / 30.0đ</div>
+        </div>
+        
+        <div class="feedback-box" id="resultFeedback">
+          <strong>Nhận xét từ giáo viên:</strong> Vui lòng hoàn thành chấm điểm các câu tự luận bên dưới để nhận kết quả phản hồi sư phạm chi tiết.
+        </div>
+      </div>
+      
+      <h3 style="color: var(--primary-color); margin: 24px 0 12px; font-weight: 800;">
+        <i class="fa-solid fa-list-check"></i> CHI TIẾT BÀI LÀM VÀ HƯỚNG DẪN CHẤM ĐIỂM
+      </h3>
+      
+      <!-- List of question comparison cards -->
+      <div id="resultQuestionsList">
+        <!-- Comparison blocks rendered dynamically -->
+      </div>
+      
+      <!-- Finish Button -->
+      <div class="card">
+        <button class="btn" id="btnFinishGrading">
+          <i class="fa-solid fa-floppy-disk"></i> Xác nhận điểm số & Lưu kết quả
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <strong>HỆ THỐNG LUYỆN THI VÀO LỚP 6 TRƯỜNG NGUYỄN AN NINH</strong>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="english_exams.js"></script>
+  <script src="tracnghiem_exams.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>
