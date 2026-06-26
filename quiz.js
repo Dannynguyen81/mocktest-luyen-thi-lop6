@@ -40,10 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
   initLeaderboard();
   renderEnglishExams();
   renderTracnghiemExams();
+  renderToanExams();
 
   // Register lobby actions
   document.getElementById('btnRandomExam').addEventListener('click', startRandomExam);
   document.getElementById('btnRandomTracnghiem').addEventListener('click', startRandomTracnghiemExam);
+  document.getElementById('btnRandomToan').addEventListener('click', startRandomToanExam);
   document.getElementById('btnSubmitExam').addEventListener('click', submitExam);
   document.getElementById('btnExitExam').addEventListener('click', confirmExitExam);
   document.getElementById('btnFinishGrading').addEventListener('click', saveAndExitResult);
@@ -54,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
       saveStudentInfo();
       renderEnglishExams();
       renderTracnghiemExams();
+      renderToanExams();
     });
   });
 
@@ -103,6 +106,7 @@ function switchTab(tabName) {
     renderTracnghiemExams();
   } else if (tabName === 'toan') {
     tabToan.classList.remove('hidden');
+    renderToanExams();
   } else if (tabName === 'rank') {
     document.getElementById('tab-rank').classList.remove('hidden');
     
@@ -195,6 +199,9 @@ function getCurrentStudentExamScore(subject, examId) {
         if (exam) examTitle = exam.title;
       } else if (subject === 'tracnghiem') {
         const exam = TRACNGHIEM_EXAMS.find(e => e.id === examId);
+        if (exam) examTitle = exam.title;
+      } else if (subject === 'toan') {
+        const exam = MATH_LOGIC_EXAMS.find(e => e.id === examId);
         if (exam) examTitle = exam.title;
       }
       
@@ -378,6 +385,47 @@ function renderTracnghiemExams() {
   });
 }
 
+// Render Toán - Tư duy exams list in Lobby
+function renderToanExams() {
+  const container = document.getElementById('toanExamList');
+  if (!container) return;
+  container.innerHTML = '';
+
+  MATH_LOGIC_EXAMS.forEach(exam => {
+    const card = document.createElement('div');
+    card.className = 'exam-card';
+
+    // Get student-specific score if completed
+    const savedScore = getCurrentStudentExamScore('toan', exam.id);
+    let statusHtml = '';
+    let btnText = 'Làm bài';
+    let btnClass = 'exam-action-btn';
+
+    if (savedScore !== null) {
+      statusHtml = `<span class="status-badge completed">Đã đạt: ${savedScore.toFixed(1)}/15.0đ</span>`;
+      btnText = 'Làm lại đề';
+      btnClass = 'exam-action-btn review';
+    } else {
+      statusHtml = `<span class="status-badge unstarted">Chưa làm</span>`;
+    }
+
+    card.innerHTML = `
+      <div>
+        <div class="exam-card-title">${exam.title}</div>
+        <div class="exam-card-meta">
+          <span><i class="fa-regular fa-clock"></i> ${exam.duration} phút</span>
+          <span><i class="fa-solid fa-star"></i> 15.0 điểm</span>
+          ${statusHtml}
+        </div>
+      </div>
+      <div>
+        <button class="${btnClass}" onclick="tryStartExam(${exam.id})">${btnText}</button>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
 // Validation before starting exam
 function validateStudentInfo() {
   const hoTen = hoTenInput.value.trim();
@@ -415,6 +463,14 @@ function startRandomTracnghiemExam() {
   startExam('tracnghiem', exam.id);
 }
 
+function startRandomToanExam() {
+  if (!validateStudentInfo()) return;
+  // Pick random exam from MATH_LOGIC_EXAMS
+  const randomIndex = Math.floor(Math.random() * MATH_LOGIC_EXAMS.length);
+  const exam = MATH_LOGIC_EXAMS[randomIndex];
+  startExam('toan', exam.id);
+}
+
 // Start exam
 function startExam(subject, examId) {
   let exam;
@@ -422,6 +478,8 @@ function startExam(subject, examId) {
     exam = ENGLISH_EXAMS.find(e => e.id === examId);
   } else if (subject === 'tracnghiem') {
     exam = TRACNGHIEM_EXAMS.find(e => e.id === examId);
+  } else if (subject === 'toan') {
+    exam = MATH_LOGIC_EXAMS.find(e => e.id === examId);
   }
   if (!exam) return;
 
@@ -608,6 +666,8 @@ function confirmExitExam() {
     quizScreen.classList.add('hidden');
     lobbyScreen.classList.remove('hidden');
     renderEnglishExams();
+    renderTracnghiemExams();
+    renderToanExams();
   }
 }
 
@@ -807,6 +867,16 @@ function recalculateTotalScore() {
       feedback = '<strong>Lời khuyên sư phạm:</strong> Khá tốt! Em có nền tảng kiến thức cơ bản tốt. Tuy nhiên cần chú ý rèn luyện thêm kỹ năng đọc hiểu câu hỏi tiếng Anh trong phần trắc nghiệm khoa học/toán học để không bị bẫy đề thi nhé.';
     } else {
       feedback = '<strong>Lời khuyên sư phạm:</strong> Cần cố gắng nhiều hơn! Điểm số trắc nghiệm tổng hợp của em chưa được như kỳ vọng. Em nên đọc thật kỹ phần Giải thích chi tiết, ôn tập lại SGK Lớp 5 và làm lại đề này để ghi nhớ sâu sắc kiến thức.';
+    }
+  } else if (currentExam && currentExam.subject === 'toan') {
+    if (percentage >= 90) {
+      feedback = '<strong>Lời khuyên sư phạm:</strong> Tuyệt vời! Năng lực toán học và tư duy logic của em đạt mức xuất sắc. Em giải quyết các bài toán vận tốc, tỷ số và hình học rất nhanh nhạy. Hãy tiếp tục phát huy để đạt điểm tối đa trong kỳ khảo sát chính thức vào Nguyễn An Ninh!';
+    } else if (percentage >= 70) {
+      feedback = '<strong>Lời khuyên sư phạm:</strong> Rất tốt! Em đã nắm vững các phương pháp giải bài toán Tổng - Hiệu, Tỷ số phần trăm và Hình học cơ bản. Hãy chú ý đọc kỹ yêu cầu đề bài và kiểm tra kỹ lại các bước tính toán của câu tự luận nhé.';
+    } else if (percentage >= 50) {
+      feedback = '<strong>Lời khuyên sư phạm:</strong> Khá tốt! Em có tư duy logic khá ổn. Tuy nhiên, em cần luyện tập thêm các dạng toán chuyển động (vận tốc, quãng đường, thời gian) và cách trình bày tự luận mạch lạc hơn.';
+    } else {
+      feedback = '<strong>Lời khuyên sư phạm:</strong> Cần cố gắng nhiều hơn! Điểm số Toán và Tư duy logic của em chưa đạt yêu cầu. Em nên ôn tập kỹ phương pháp giải toán có lời văn lớp 5, tham khảo kỹ lời giải chi tiết bên dưới và thử sức lại nhé.';
     }
   } else {
     // English feedback

@@ -101,15 +101,15 @@
           </div>
         </div>
         
-        <!-- Toán - Tư duy Tab content (Placeholder) -->
+        <!-- Toán - Tư duy Tab content -->
         <div id="tab-toan" class="hidden">
-          <div class="card placeholder-card">
-            <div class="placeholder-icon">
-              <i class="fa-solid fa-gears"></i>
-            </div>
-            <h3>Đề thi Toán - Tư duy logic</h3>
-            <p style="margin-top: 8px;">Nội dung đang được ban chuyên môn biên soạn và kiểm duyệt.</p>
-            <p>Vui lòng quay lại sau.</p>
+          <div class="lobby-header-actions">
+            <button class="random-btn" id="btnRandomToan">
+              <i class="fa-solid fa-shuffle"></i> Thi thử ngẫu nhiên (1 trong 10 đề)
+            </button>
+          </div>
+          <div class="exam-grid" id="toanExamList">
+            <!-- Exam cards will be rendered dynamically here -->
           </div>
         </div>
         
@@ -217,6 +217,7 @@
   <!-- Scripts -->
   <script src="english_exams.js"></script>
   <script src="tracnghiem_exams.js"></script>
+  <script src="math_logic_exams.js"></script>
   <script src="quiz.js"></script>
 </body>
 </html>
