@@ -859,13 +859,13 @@ const TRACNGHIEM_EXAMS = [
             "text": "Question 14. The following grid (Picture 3) can be filled with exactly 4 shapes (star, square, circle and diamond). There is no duplicated shape in each row or column. The shape at the ? is:",
             "options": [
               "A. Star",
-              "B. Square",
-              "C. Circle",
+              "B. Circle",
+              "C. Square",
               "D. Diamond"
             ],
             "modelAnswer": "B",
             "rubric": "Chọn đúng B.",
-            "explanation": "Giải câu đố Sudoku hình học bằng cách điền các hình sao cho mỗi hàng/cột không lặp lại hình nào. Vị trí dấu chấm hỏi sẽ là hình vuông (Square)."
+            "explanation": "Giải câu đố Sudoku hình học bằng cách điền các hình sao cho mỗi hàng/cột không lặp lại hình nào. Vị trí dấu chấm hỏi sẽ là hình tròn (Circle)."
           },
           {
             "id": "TN3_15",

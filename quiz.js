@@ -105,6 +105,17 @@ function switchTab(tabName) {
     tabToan.classList.remove('hidden');
   } else if (tabName === 'rank') {
     document.getElementById('tab-rank').classList.remove('hidden');
+    
+    // Sync sub-tabs active state with currentRankSubject
+    const rankSubtabBtns = document.querySelectorAll('.rank-subtab-btn');
+    rankSubtabBtns.forEach(btn => {
+      if (btn.getAttribute('data-subject') === currentRankSubject) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+    
     renderLeaderboard();
   }
 }
