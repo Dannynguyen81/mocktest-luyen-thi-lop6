@@ -1131,14 +1131,14 @@ const TRACNGHIEM_EXAMS = [
             "maxPoints": 2,
             "text": "Question 11. What does this sign mean (Picture 2)?",
             "options": [
-              "A. People must drop litter here.",
-              "B. People mustn't throw trash on the ground.",
-              "C. Recycle bins are ahead.",
-              "D. Sweeping is allowed here."
+              "A. Bicycles are allowed on this road.",
+              "B. No entry for all vehicles.",
+              "C. Drivers must park their vehicles here.",
+              "D. One-way street ahead."
             ],
             "modelAnswer": "B",
             "rubric": "Chọn đúng B.",
-            "explanation": "Biển báo cấm vứt rác bừa bãi (No Littering). Do đó người dân không được phép vứt rác xuống mặt đất."
+            "explanation": "Biển báo đường cấm đi ngược chiều (Biển P.102). Yêu cầu tất cả các phương tiện không được đi vào theo chiều đặt biển."
           },
           {
             "id": "TN4_12",
@@ -1448,14 +1448,14 @@ const TRACNGHIEM_EXAMS = [
             "maxPoints": 2,
             "text": "Question 11. What does this sign mean (Picture 2)?",
             "options": [
-              "A. Swimming is encouraged here.",
-              "B. People mustn't swim or bathe in this area.",
-              "C. Fishing is allowed.",
-              "D. Deep water ahead, swim with caution."
+              "A. Drivers must watch out for pedestrians crossing ahead.",
+              "B. Pedestrians are forbidden on this road.",
+              "C. Bicycles crossing ahead.",
+              "D. Speed up and pass quickly."
             ],
-            "modelAnswer": "B",
-            "rubric": "Chọn đúng B.",
-            "explanation": "Biển báo cấm bơi lội (No Swimming) dùng để cảnh báo nguy hiểm đuối nước tại hồ, sông, suối."
+            "modelAnswer": "A",
+            "rubric": "Chọn đúng A.",
+            "explanation": "Biển cảnh báo nguy hiểm: Đường người đi bộ cắt ngang (Biển W.224). Yêu cầu người lái xe giảm tốc độ để nhường đường cho người đi bộ."
           },
           {
             "id": "TN5_12",
@@ -1765,14 +1765,14 @@ const TRACNGHIEM_EXAMS = [
             "maxPoints": 2,
             "text": "Question 11. What does this sign mean (Picture 2)?",
             "options": [
-              "A. Mobile phones are free to use.",
-              "B. Charging station is ahead.",
-              "C. People must turn off or not use mobile phones here.",
-              "D. Internet connection is available."
+              "A. Bicycles are recommended here.",
+              "B. Bicycle parking zone ahead.",
+              "C. Bicycles are not allowed on this road.",
+              "D. Bicycle rental service is nearby."
             ],
             "modelAnswer": "C",
             "rubric": "Chọn đúng C.",
-            "explanation": "Biển báo cấm sử dụng điện thoại di động (No Cellphones), thường áp dụng tại cây xăng, bệnh viện hoặc phòng thi."
+            "explanation": "Biển báo cấm xe đạp (Biển P.110a). Cấm tất cả các loại xe đạp đi vào đoạn đường có cắm biển báo này."
           },
           {
             "id": "TN6_12",
@@ -3033,14 +3033,14 @@ const TRACNGHIEM_EXAMS = [
             "maxPoints": 2,
             "text": "Question 11. What does this sign mean (Picture 2)?",
             "options": [
-              "A. Trash bin nearby.",
-              "B. Danger ahead.",
-              "C. This item or material can be recycled.",
-              "D. Water protection zone."
+              "A. Drivers can stop but cannot park here.",
+              "B. Drivers can park but cannot stop here.",
+              "C. Drivers must not stop or park their vehicles here.",
+              "D. Parking is free for all vehicles."
             ],
             "modelAnswer": "C",
             "rubric": "Chọn đúng C.",
-            "explanation": "Biển báo biểu tượng tái chế (Recycle symbol), chỉ ra rằng vật liệu hoặc sản phẩm này có thể tái sử dụng/tái chế."
+            "explanation": "Biển báo cấm dừng xe và đỗ xe (Biển P.130). Cấm tất cả các phương tiện giao thông dừng và đỗ ở đường có đặt biển."
           },
           {
             "id": "TN10_12",
