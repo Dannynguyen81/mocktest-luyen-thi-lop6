@@ -2406,7 +2406,7 @@ const TRACNGHIEM_EXAMS = [
             ],
             "modelAnswer": "A",
             "rubric": "Chọn đúng A.",
-            "explanation": "Biển báo trẻ em dắt tay nhau qua đường, cảnh báo khu vực trường học có trẻ em sang đường, yêu cầu lái xe giảm tốc độ quan sát."
+            "explanation": "Biển báo nguy hiểm: Trẻ em (Biển W.225). Cảnh báo đoạn đường thường có trẻ em đi ngang qua như khu vực trường học, yêu cầu lái xe đi chậm quan sát."
           },
           {
             "id": "TN8_12",
@@ -2723,7 +2723,7 @@ const TRACNGHIEM_EXAMS = [
             ],
             "modelAnswer": "C",
             "rubric": "Chọn đúng C.",
-            "explanation": "Biển báo cấm đỗ xe (No Parking), yêu cầu lái xe không được đỗ phương tiện tại khu vực có cắm biển."
+            "explanation": "Biển báo cấm đỗ xe (Biển P.131a). Cấm tất cả các phương tiện giao thông đỗ ở đường có đặt biển (vẫn được phép dừng xe trong thời gian ngắn)."
           },
           {
             "id": "TN9_12",
